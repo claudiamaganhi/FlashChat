@@ -18,8 +18,12 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        applyStyle()
+    }
+    
+    private func applyStyle() {
+        emailContainerView.applyShadowRoundCorners()
+        passwordContainerView.applyShadowRoundCorners()
     }
     
     @IBAction func register(_ sender: UIButton) {

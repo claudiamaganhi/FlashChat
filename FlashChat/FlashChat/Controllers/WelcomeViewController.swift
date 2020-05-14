@@ -9,16 +9,39 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        animateTitle()
     }
 
     @IBAction func register(_ sender: UIButton) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "RegisterViewController") as? RegisterViewController else {
+            print("Failed to load RegisterViewController from storyboard.")
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func login(_ sender: UIButton) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
+            print("Failed to load LoginViewController from storyboard.")
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func animateTitle() {
+        let title = "⚡️FlashChat"
+        titleLabel.text = ""
+        
+        for (index, letter) in title.enumerated() {
+            Timer.scheduledTimer(withTimeInterval: 0.13 * Double(index), repeats: false) { (timer) in
+                self.titleLabel.text?.append(letter)
+            }
+        }
     }
     
 }
