@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
     
@@ -27,7 +28,22 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            //handle error
+            return
+        }
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                //handle error
+                print(error.localizedDescription)
+            } else {
+                guard let chatViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
+                chatViewController.modalPresentationStyle = .fullScreen
+                
+                self.present(chatViewController, animated: true, completion: nil)
+            }
+        }
     }
-    
+   
 
 }

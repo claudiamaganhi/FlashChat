@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatViewController: UIViewController {
     
@@ -15,12 +16,37 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "⚡️FlashChat"
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func sendMessageTapped(_ sender: UIButton) {
     }
+    @IBAction func logOut(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            let navigationController = self.presentingViewController as? UINavigationController
+            self.dismiss(animated: true) {
+                let _ = navigationController?.popToRootViewController(animated: true)
+            }
+        } catch let error as NSError {
+            //handle error
+            print(error.localizedDescription)
+        }
+        
+    }
     
+}
 
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+    
+    
 }
