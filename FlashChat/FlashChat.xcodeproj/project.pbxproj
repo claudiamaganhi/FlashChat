@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		0F2B8416246C6D270091A3D1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8415246C6D270091A3D1 /* ChatViewController.swift */; };
 		0F2B8419246C70B00091A3D1 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8418246C70B00091A3D1 /* UIView.swift */; };
 		0F2B841C246DC32F0091A3D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F2B841B246DC32F0091A3D1 /* GoogleService-Info.plist */; };
+		0F2B8420246F1B590091A3D1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B841F246F1B590091A3D1 /* Constants.swift */; };
+		0F2B8422246F1DFE0091A3D1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8421246F1DFE0091A3D1 /* Message.swift */; };
+		0F2B84292472F1F30091A3D1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B84272472F1F20091A3D1 /* MessageCell.swift */; };
+		0F2B842A2472F1F30091A3D1 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2B84282472F1F30091A3D1 /* MessageCell.xib */; };
 		FA2180FC345E200A87470052 /* Pods_FlashChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F4890F982F8E38BB64B99F /* Pods_FlashChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,10 @@
 		0F2B8415246C6D270091A3D1 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0F2B8418246C70B00091A3D1 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		0F2B841B246DC32F0091A3D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0F2B841F246F1B590091A3D1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0F2B8421246F1DFE0091A3D1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0F2B84272472F1F20091A3D1 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		0F2B84282472F1F30091A3D1 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		A6CA662661E150E0F09DA2EF /* Pods-FlashChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashChat.debug.xcconfig"; path = "Target Support Files/Pods-FlashChat/Pods-FlashChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A730A97ADB3440AF4E3879A7 /* Pods-FlashChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashChat.release.xcconfig"; path = "Target Support Files/Pods-FlashChat/Pods-FlashChat.release.xcconfig"; sourceTree = "<group>"; };
 		E3F4890F982F8E38BB64B99F /* Pods_FlashChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +85,7 @@
 				0F2B840F246C61D80091A3D1 /* Models */,
 				0F2B840E246C61C80091A3D1 /* Views */,
 				0F2B840D246C61BE0091A3D1 /* Controllers */,
-				0F2B8417246C708F0091A3D1 /* Extensions */,
+				0F2B841D246F1B1B0091A3D1 /* Util */,
 				0F2B840B246C61A10091A3D1 /* Resources */,
 				0F2B840C246C61A90091A3D1 /* SupportingFiles */,
 			);
@@ -117,6 +125,8 @@
 			children = (
 				0F2B83FD246C61930091A3D1 /* Main.storyboard */,
 				0F2B8402246C61980091A3D1 /* LaunchScreen.storyboard */,
+				0F2B84272472F1F20091A3D1 /* MessageCell.swift */,
+				0F2B84282472F1F30091A3D1 /* MessageCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +134,7 @@
 		0F2B840F246C61D80091A3D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0F2B8421246F1DFE0091A3D1 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +154,23 @@
 				0F2B8418246C70B00091A3D1 /* UIView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0F2B841D246F1B1B0091A3D1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				0F2B841E246F1B2E0091A3D1 /* Constants */,
+				0F2B8417246C708F0091A3D1 /* Extensions */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		0F2B841E246F1B2E0091A3D1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0F2B841F246F1B590091A3D1 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		1848D000BC9B7B2B9317FB4D /* Frameworks */ = {
@@ -222,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2B842A2472F1F30091A3D1 /* MessageCell.xib in Resources */,
 				0F2B8404246C61980091A3D1 /* LaunchScreen.storyboard in Resources */,
 				0F2B841C246DC32F0091A3D1 /* GoogleService-Info.plist in Resources */,
 				0F2B8401246C61980091A3D1 /* Assets.xcassets in Resources */,
@@ -279,12 +308,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F2B83FC246C61930091A3D1 /* WelcomeViewController.swift in Sources */,
+				0F2B84292472F1F30091A3D1 /* MessageCell.swift in Sources */,
 				0F2B83F8246C61930091A3D1 /* AppDelegate.swift in Sources */,
 				0F2B83FA246C61930091A3D1 /* SceneDelegate.swift in Sources */,
+				0F2B8422246F1DFE0091A3D1 /* Message.swift in Sources */,
 				0F2B8419246C70B00091A3D1 /* UIView.swift in Sources */,
 				0F2B8414246C6D190091A3D1 /* LoginViewController.swift in Sources */,
 				0F2B8416246C6D270091A3D1 /* ChatViewController.swift in Sources */,
 				0F2B8412246C6D0B0091A3D1 /* RegisterViewController.swift in Sources */,
+				0F2B8420246F1B590091A3D1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

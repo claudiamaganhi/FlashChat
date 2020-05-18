@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
                 //handle error
                 print(error.localizedDescription)
             } else {
-                guard let chatViewController = self?.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
+                guard let chatViewController = self?.storyboard?.instantiateViewController(withIdentifier: Constants.chatStoryboardID) as? ChatViewController else { return }
                 chatViewController.modalPresentationStyle = .fullScreen
                 self?.present(chatViewController, animated: true, completion: nil)
             }

@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController {
     }
 
     @IBAction func register(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(identifier: "RegisterViewController") as? RegisterViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: Constants.registerStoryboardID) as? RegisterViewController else {
             print("Failed to load RegisterViewController from storyboard.")
             return
         }
@@ -26,7 +26,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: Constants.loginStoryboardID) as? LoginViewController else {
             print("Failed to load LoginViewController from storyboard.")
             return
         }
@@ -34,7 +34,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func animateTitle() {
-        let title = "⚡️FlashChat"
+        let title = Constants.appName
         titleLabel.text = ""
         
         for (index, letter) in title.enumerated() {
