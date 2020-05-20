@@ -101,12 +101,12 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         if message.sender == Auth.auth().currentUser?.email {
             cell.rightImageView.isHidden = false
             cell.leftImageView.isHidden = true
-            cell.messageContainerView.backgroundColor = #colorLiteral(red: 0.48765558, green: 0.6202688813, blue: 0.7409835458, alpha: 0.7035204179)
+            cell.messageContainerView.backgroundColor = #colorLiteral(red: 0.48765558, green: 0.6202688813, blue: 0.7409835458, alpha: 0.5)
             cell.messageLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         } else {
             cell.rightImageView.isHidden = true
             cell.leftImageView.isHidden = false
-            cell.messageContainerView.backgroundColor = #colorLiteral(red: 0.5054885149, green: 0.6637036204, blue: 0.6215990186, alpha: 0.6978767255)
+            cell.messageContainerView.backgroundColor = #colorLiteral(red: 0.5054885149, green: 0.6637036204, blue: 0.6215990186, alpha: 0.5032472201)
             cell.messageLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         
