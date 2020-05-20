@@ -24,14 +24,17 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendMessageTapped(_ sender: UIButton) {
-        if let messageBody = messageTextField.text, let sender = Auth.auth().currentUser?.email {
-            db.collection(Constants.Firestore.collectionName).addDocument(data: [Constants.Firestore.senderField: sender,
-                                                                                 Constants.Firestore.bodyField: messageBody,
-                                                                                 Constants.Firestore.dateField: Date().timeIntervalSince1970]) { (error) in
-                self.messageTextField.text = ""
-                if let error = error {
-                    //handle error
-                    print(error)
+        guard let message = messageTextField.text else { return }
+        if !message.isEmpty {
+            if let messageBody = messageTextField.text, let sender = Auth.auth().currentUser?.email {
+                db.collection(Constants.Firestore.collectionName).addDocument(data: [Constants.Firestore.senderField: sender, Constants.Firestore.bodyField: messageBody, Constants.Firestore.dateField: Date().timeIntervalSince1970]) { (error) in
+                    
+                    self.messageTextField.text = ""
+                    if let error = error {
+                        //handle error
+                        print(error)
+                        
+                    }
                 }
             }
         }
