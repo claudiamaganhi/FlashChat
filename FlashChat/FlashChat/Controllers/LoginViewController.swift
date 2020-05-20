@@ -38,8 +38,7 @@ class LoginViewController: UIViewController {
                 print(error.localizedDescription)
             } else {
                 guard let chatViewController = self?.storyboard?.instantiateViewController(withIdentifier: Constants.chatStoryboardID) as? ChatViewController else { return }
-                chatViewController.modalPresentationStyle = .fullScreen
-                self?.present(chatViewController, animated: true, completion: nil)
+                self?.navigationController?.pushViewController(chatViewController, animated: true)
             }
         }
     }
