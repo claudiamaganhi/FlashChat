@@ -14,15 +14,55 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     
-    var messages: [Message] = [Message(sender: "clau", body: "hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello"), Message(sender: "erin", body: "hi"), Message(sender: "claud", body: "hello there")]
+    let db = Firestore.firestore()
+    var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadMessages()
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellID)
     }
     
     @IBAction func sendMessageTapped(_ sender: UIButton) {
+        if let messageBody = messageTextField.text, let sender = Auth.auth().currentUser?.email {
+            db.collection(Constants.Firestore.collectionName).addDocument(data: [Constants.Firestore.senderField: sender,
+                                                                                 Constants.Firestore.bodyField: messageBody,
+                                                                                 Constants.Firestore.dateField: Date().timeIntervalSince1970]) { (error) in
+                self.messageTextField.text = ""
+                if let error = error {
+                    //handle error
+                    print(error)
+                }
+            }
+        }
     }
+    
+    private func loadMessages() {
+        db.collection(Constants.Firestore.collectionName)
+            .order(by: Constants.Firestore.dateField)
+            .addSnapshotListener { (querySnapshot, error) in
+            self.messages = []
+            if let err = error {
+                //handle error
+                print(err)
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        if let sender = data[Constants.Firestore.senderField] as? String, let messageBody = data[Constants.Firestore.bodyField] as? String {
+                            let newMessage = Message(sender: sender, body: messageBody)
+                            self.messages.append(newMessage)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
     @IBAction func logOut(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
